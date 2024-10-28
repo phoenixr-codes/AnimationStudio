@@ -1,0 +1,60 @@
+[project.name]
+en-us = "AnimationStudio"
+
+[project.description]
+de-de = "Erstelle Animationen mit einem einfachen UI"
+en-us = "Create animations with a simple UI"
+
+[project]
+min-engine-version = "1.21.30"
+version = "0.1.0"
+authors = ["Jonas da Silva", "pxr"]
+license = "MIT"
+url = "https://github.com/phoenixr-codes/AnimationStudio"
+
+[localization]
+primary-language = "en-us"
+
+[BP]
+custom-manifest = true
+
+# [[plugin]]
+# name = "transpile typescript"
+# run = "npm"
+# args = ["run", "build"]
+
+[[plugin]]
+name = "bundle js/ts"
+run = "npx"
+args = ["webpack"]
+
+[[plugin]]
+name = "yaml to json"
+run = "plugins-thirdparty/plugins/yaml-to-json/yaml_to_json.rb"
+with = "ruby"
+
+[[plugin]]
+name = "prettify JSON"
+run = "plugins-thirdparty/plugins/transformjson/transformjson.rb"
+with = "ruby"
+options = { indent = 0, before-colon = 0, after-colon = 0, array-indent = 0, object-indent = 0 }
+when = 'env("ALLAY_DEBUG") != "1"'
+
+[[plugin]]
+name = "minify JSON"
+run = "plugins-thirdparty/plugins/transformjson/transformjson.rb"
+with = "ruby"
+when = 'env("ALLAY_DEBUG") == "1"'
+
+[[plugin]]
+name = "exclude"
+run = "plugins-thirdparty/plugins/exclude/exclude.rb"
+with = "ruby"
+options = { patterns = ["**/*.ts"] }
+
+[[plugin]]
+name = "include notice"
+run = "plugins/include_notice.rb"
+with = "ruby"
+
+[env]

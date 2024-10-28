@@ -1,0 +1,3 @@
+[submodule "plugins-thirdparty"]
+	path = plugins-thirdparty
+	url = https://github.com/allay-mc/plugins.git

@@ -1,0 +1,15 @@
+item.animstud:keyframe_edit=Edit Keyframe
+item.animstud:scene_creator=Scene Creator
+
+animstud:ui.menu.global_scene_editor.title=Scene Editor
+animstud:ui.menu.global_scene_editor.button.manual=Manual
+animstud:ui.menu.global_scene_editor.button.create_scene=Create Scene
+animstud:ui.menu.global_scene_editor.button.edit_scene=Edit Scene §o%s§r
+animstud:ui.menu.scene_creator_menu.title=Scene Creator
+animstud:ui.menu.scene_creator_menu.text_field.id.label=ID
+animstud:ui.menu.scene_creator_menu.text_field.id.placeholder=Unique ID of scene
+
+animstud:ui.label.required=required
+
+animstud:log.error.message.id_too_short=ID must have a length of 1 or greater.
+

@@ -1,0 +1,7 @@
+resource_pack_name: "animstud"
+texture_name: "atlas.items"
+texture_data:
+  keyframe_creator:
+    textures: "textures/items/keyframe_creator"
+  scene_editor:
+    textures: "textures/items/scene_editor"

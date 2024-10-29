@@ -15,7 +15,7 @@ import {
 } from "./util";
 import { getScenes, setScene, Scene } from "./scene";
 
-const navigatorSeparator = " > ";
+const navigatorSeparator = " §e>§r ";
 
 export async function openGlobalSceneEditorMenu(player: Player) {
   const scenes = getScenes(world);
@@ -63,15 +63,14 @@ async function openSceneCreatorMenu(player: Player) {
       rawtext: [
         { translate: "animstud:ui.menu.global_scene_editor.title" },
         { text: navigatorSeparator },
-        { translate: "animstud:ui.menu.scene_creator_menu.title" },
+        { translate: "animstud:ui.menu.scene_creator.title" },
       ],
     })
     .textField(
       {
         rawtext: [
           {
-            translate:
-              "animstud:ui.menu.scene_creator_menu.text_field.id.label",
+            translate: "animstud:ui.menu.scene_creator.text_field.id.label",
           },
           { text: " §7(" },
           { translate: "animstud:ui.label.required" },
@@ -79,8 +78,7 @@ async function openSceneCreatorMenu(player: Player) {
         ],
       },
       {
-        translate:
-          "animstud:ui.menu.scene_creator_menu.text_field.id.placeholder",
+        translate: "animstud:ui.menu.scene_creator.text_field.id.placeholder",
       },
     );
 
@@ -104,11 +102,29 @@ async function openSceneCreatorMenu(player: Player) {
 
 async function openSceneEditorMenu(player: Player, scene: Scene) {
   const form = new ActionFormData()
-    .title(`Scene Editor §8>§r Edit §o${scene.id}§r`)
-    .button("Preview Scene", "textures/icons/animstud/play")
-    .button("Configure Scene", "textures/ui/icon_setting")
-    .button("Edit keyframes", "textures/items/keyframe_creator")
-    .button("Export Scene", "textures/ui/upload_glyph");
+    .title({
+      rawtext: [
+        { text: "Scene Editor" },
+        { text: navigatorSeparator },
+        { translate: "animstud:ui.menu.scene_editor.title", with: [scene.id] },
+      ],
+    })
+    .button(
+      { translate: "animstud:ui.menu.scene_editor.button.preview" },
+      "textures/icons/animstud/play",
+    )
+    .button(
+      { translate: "animstud:ui.menu.scene_editor.button.configure" },
+      "textures/ui/icon_setting",
+    )
+    .button(
+      { translate: "animstud:ui.menu.scene_editor.button.edit" },
+      "textures/items/keyframe_creator",
+    )
+    .button(
+      { translate: "animstud:ui.menu.scene_editor.button.export" },
+      "textures/ui/upload_glyph",
+    );
 
   const response = await form.show(player);
   switch (response.selection) {
@@ -132,12 +148,29 @@ async function openSceneEditorMenu(player: Player, scene: Scene) {
 
 async function openKeyframesEditorMenu(player: Player, scene: Scene) {
   const form = new ActionFormData()
-    .title(`Scene Editor §8>§r Edit §o${scene.id}§r §8>§r Keyframes`)
-    .body("Use the §bCreate Keyframe§r item to create a new keyframe.");
+    .title({
+      rawtext: [
+        { text: "Scene Editor" },
+        { text: navigatorSeparator },
+        {
+          translate: "animstud:ui.menu.global_scene_editor.button.edit_scene",
+          with: [scene.id],
+        },
+        { text: navigatorSeparator },
+        { translate: "animstud:ui.menu.keyframes_editor.title" },
+      ],
+    })
+    .body({ translate: "animstud:ui.menu.keyframes_editor.body" });
   const hasKeyframes = scene.keyframes.length > 0;
   if (hasKeyframes) {
     for (const keyframe of scene.keyframes) {
-      form.button(`Edit Keyframe §o${keyframe.id}§r`, "textures/ui/editIcon");
+      form.button(
+        {
+          translate: "animstud:ui.menu.keyframes_editor.button.edit",
+          with: [keyframe.id],
+        },
+        "textures/ui/editIcon",
+      );
     }
   } else {
     form.button("TODO: we need at least one button");
@@ -162,46 +195,163 @@ async function openKeyframeEditorMenu(
 ) {
   const sceneIds = getScenes(world).map((s: Scene) => s.id);
   const form = new ModalFormData()
-    .title(`Edit Keyframe §o${keyframe.id}§r`)
+    .title({
+      translate: "animstud:ui.menu.keyframe_editor.title",
+      with: [keyframe.id],
+    })
     .textField(
-      "ID §7(required)§r",
-      "Unique identifier of keyframe",
+      {
+        rawtext: [
+          {
+            translate: "animstud:ui.menu.keyframe_editor.text_field.id.label",
+          },
+          {
+            text: " §7(",
+          },
+          {
+            translate: "animstud:ui.label.required",
+          },
+          {
+            text: ")§r",
+          },
+        ],
+      },
+      {
+        translate: "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+      },
       keyframe.id,
     )
     .textField(
-      "Camera Position X §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_position_x.label",
+          },
+          { text: " §7(" },
+          {
+            translate:
+              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+          },
+          { text: ")§r" },
+        ],
+      },
       "42",
       keyframe.pos.x.toString(),
     )
     .textField(
-      "Camera Position Y §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_position_y.label",
+          },
+          { text: " §7(" },
+          {
+            translate:
+              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+          },
+          { text: ")§r" },
+        ],
+      },
       "42",
       keyframe.pos.y.toString(),
     )
     .textField(
-      "Camera Position Z §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_position_z.label",
+          },
+          { text: " §7(" },
+          {
+            translate:
+              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+          },
+          { text: ")§r" },
+        ],
+      },
       "42",
       keyframe.pos.z.toString(),
     )
     .textField(
-      "Camera Rotation X §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_rotation_x.label",
+          },
+          { text: " §7(" },
+          {
+            translate:
+              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+          },
+          { text: ")§r" },
+        ],
+      },
       "42",
       keyframe.rot.x.toString(),
     )
     .textField(
-      "Camera Rotation Y §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_rotation_y.label",
+          },
+          { text: " " },
+          {
+            translate:
+              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+          },
+        ],
+      },
       "42",
       keyframe.rot.y.toString(),
     )
     .dropdown(
-      "Easing Type",
+      {
+        translate:
+          "animstud:ui.menu.keyframe_editor.text_field.easing_type.label",
+      },
       getAllEnumKeys(EasingType),
       getAllEnumKeys(EasingType).indexOf(keyframe.ease.easeType!),
     )
-    .slider("Ease Duration", 1, 30, 0.5, keyframe.ease.easeTime ?? 5)
-    .toggle("Hide HUD", !keyframe.visibleHud)
-    .dropdown("Scene", sceneIds, sceneIds.indexOf(scene.id))
-    .dropdown("Position", ["Keep", "Swap with previous", "Swap with next"], 0);
+    .slider(
+      { translate: "animstud:ui.menu.keyframe_editor.slider.easing_duration" },
+      1,
+      30,
+      0.5,
+      keyframe.ease.easeTime ?? 5,
+    )
+    .toggle(
+      { translate: "animstud:ui.menu.keyframe_editor.toggle.hide_hud" },
+      !keyframe.visibleHud,
+    )
+    .dropdown(
+      { translate: "animstud:ui.menu.keyframe_editor.dropdown.scene.label" },
+      sceneIds,
+      sceneIds.indexOf(scene.id),
+    )
+    .dropdown(
+      { translate: "animstud:ui.menu.keyframe_editor.dropdown.position.label" },
+      [
+        {
+          translate:
+            "animstud:ui.menu.keyframe_editor.dropdown.position.option.keep",
+        },
+        {
+          translate:
+            "animstud:ui.menu.keyframe_editor.dropdown.position.option.swap_previous",
+        },
+        {
+          translate:
+            "animstud:ui.menu.keyframe_editor.dropdown.position.option.swap_next",
+        },
+      ],
+      0,
+    );
 
   const response = await form.show(player);
   if (response.formValues === undefined) {
@@ -249,7 +399,7 @@ async function openKeyframeEditorMenu(
 export async function openKeyframeCreatorMenu(player: Player) {
   // TODO: see `openKeyframeEditorMenu`
   const form = new ModalFormData()
-    .title("Create Keyframe")
+    .title({ translate: "animstud:ui.menu.keyframe_creator.title" })
     .textField("ID §7(required)§r", "Unique identifier of keyframe")
     .textField(
       "Camera Position X §7(required)§r",
@@ -283,7 +433,16 @@ export async function openKeyframeCreatorMenu(player: Player) {
       "Scene",
       getScenes(world).map((scene: Scene) => scene.id),
     )
-    .dropdown("Position", ["Append", "Prepend"]);
+    .dropdown("Position", [
+      {
+        translate:
+          "animstud:ui.menu.keyframe_creator.dropdown.position.option.append",
+      },
+      {
+        translate:
+          "animstud:ui.menu.keyframe_creator.dropdown.position.option.prepend",
+      },
+    ]);
 
   const response = await form.show(player);
   if (response.formValues === undefined) {

@@ -5,9 +5,40 @@ animstud:ui.menu.global_scene_editor.title=Scene Editor
 animstud:ui.menu.global_scene_editor.button.manual=Manual
 animstud:ui.menu.global_scene_editor.button.create_scene=Create Scene
 animstud:ui.menu.global_scene_editor.button.edit_scene=Edit Scene §o%s§r
-animstud:ui.menu.scene_creator_menu.title=Scene Creator
-animstud:ui.menu.scene_creator_menu.text_field.id.label=ID
-animstud:ui.menu.scene_creator_menu.text_field.id.placeholder=Unique ID of scene
+
+animstud:ui.menu.scene_creator.title=Scene Creator
+animstud:ui.menu.scene_creator.text_field.id.label=ID
+animstud:ui.menu.scene_creator.text_field.id.placeholder=Unique ID of scene
+animstud:ui.menu.scene_editor.title=Edit Scene §o%s§r
+animstud:ui.menu.scene_editor.button.preview=Preview Scene
+animstud:ui.menu.scene_editor.button.configure=Configure Scene
+animstud:ui.menu.scene_editor.button.edit=Edit Scene
+animstud:ui.menu.scene_editor.button.export=Export Scene
+
+animstud:ui.menu.keyframes_editor.title=Keyframes
+animstud:ui.menu.keyframes_editor.body=Use the §bCreate Keyframe§r item to create a new keyframe.
+animstud:ui.menu.keyframes_editor.button.edit=Edit Keyframe §o%s§r
+
+animstud:ui.menu.keyframe_editor.title=Edit Keyframe §o%s§r
+animstud:ui.menu.keyframe_editor.text_field.id.label=ID
+animstud:ui.menu.keyframe_editor.text_field.id.placeholder=Unique ID of keyframe
+animstud:ui.menu.keyframe_editor.text_field.camera_position_x.label=Camera Position X
+animstud:ui.menu.keyframe_editor.text_field.camera_position_y.label=Camera Position Y
+animstud:ui.menu.keyframe_editor.text_field.camera_position_z.label=Camera Position Z
+animstud:ui.menu.keyframe_editor.text_field.camera_rotation_x.label=Camera Rotation X
+animstud:ui.menu.keyframe_editor.text_field.camera_rotation_y.label=Camera Rotation Y
+animstud:ui.menu.keyframe_editor.text_field.easing_type.label=Easing Type
+animstud:ui.menu.keyframe_editor.slider.easing_duration=Easing Duration
+animstud:ui.menu.keyframe_editor.toggle.hide_hud=Hide HUD
+animstud:ui.menu.keyframe_editor.dropdown.scene.label=Scene
+animstud:ui.menu.keyframe_editor.dropdown.position.label=Position
+animstud:ui.menu.keyframe_editor.dropdown.position.option.keep=Keep
+animstud:ui.menu.keyframe_editor.dropdown.position.option.swap_previous=Swap with previous
+animstud:ui.menu.keyframe_editor.dropdown.position.option.swap_next=Swap with next
+
+animstud:ui.menu.keyframe_creator.title=Create Keyframe
+animstud:ui.menu.keyframe_creator.dropdown.position.option.append=Append
+animstud:ui.menu.keyframe_creator.dropdown.position.option.prepend=Prepend
 
 animstud:ui.label.required=required
 

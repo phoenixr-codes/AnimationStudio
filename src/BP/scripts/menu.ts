@@ -230,8 +230,7 @@ async function openKeyframeEditorMenu(
           },
           { text: " §7(" },
           {
-            translate:
-              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+            translate: "animstud:ui.label.required",
           },
           { text: ")§r" },
         ],
@@ -248,8 +247,7 @@ async function openKeyframeEditorMenu(
           },
           { text: " §7(" },
           {
-            translate:
-              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+            translate: "animstud:ui.label.required",
           },
           { text: ")§r" },
         ],
@@ -266,8 +264,7 @@ async function openKeyframeEditorMenu(
           },
           { text: " §7(" },
           {
-            translate:
-              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+            translate: "animstud:ui.label.required",
           },
           { text: ")§r" },
         ],
@@ -284,8 +281,7 @@ async function openKeyframeEditorMenu(
           },
           { text: " §7(" },
           {
-            translate:
-              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+            translate: "animstud:ui.label.required",
           },
           { text: ")§r" },
         ],
@@ -302,8 +298,7 @@ async function openKeyframeEditorMenu(
           },
           { text: " " },
           {
-            translate:
-              "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+            translate: "animstud:ui.label.required",
           },
         ],
       },
@@ -400,49 +395,148 @@ export async function openKeyframeCreatorMenu(player: Player) {
   // TODO: see `openKeyframeEditorMenu`
   const form = new ModalFormData()
     .title({ translate: "animstud:ui.menu.keyframe_creator.title" })
-    .textField("ID §7(required)§r", "Unique identifier of keyframe")
     .textField(
-      "Camera Position X §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate: "animstud:ui.menu.keyframe_editor.text_field.id.label",
+          },
+          {
+            text: " §7(",
+          },
+          {
+            translate: "animstud:ui.label.required",
+          },
+          {
+            text: ")§r",
+          },
+        ],
+      },
+      {
+        translate: "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+      },
+    )
+    .textField(
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_position_x.label",
+          },
+          { text: " §7(" },
+          {
+            translate: "animstud:ui.label.required",
+          },
+          { text: ")§r" },
+        ],
+      },
       "42",
       player.location.x.toString(),
     )
     .textField(
-      "Camera Position Y §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_position_y.label",
+          },
+          { text: " §7(" },
+          {
+            translate: "animstud:ui.label.required",
+          },
+          { text: ")§r" },
+        ],
+      },
       "42",
       player.location.y.toString(),
     )
     .textField(
-      "Camera Position Z §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_position_z.label",
+          },
+          { text: " §7(" },
+          {
+            translate: "animstud:ui.label.required",
+          },
+          { text: ")§r" },
+        ],
+      },
       "42",
       player.location.z.toString(),
     )
     .textField(
-      "Camera Rotation X §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_rotation_x.label",
+          },
+          { text: " §7(" },
+          {
+            translate: "animstud:ui.label.required",
+          },
+          { text: ")§r" },
+        ],
+      },
       "42",
       player.getRotation().x.toString(),
     )
     .textField(
-      "Camera Rotation Y §7(required)§r",
+      {
+        rawtext: [
+          {
+            translate:
+              "animstud:ui.menu.keyframe_editor.text_field.camera_rotation_y.label",
+          },
+          { text: " §7(" },
+          {
+            translate: "animstud:ui.label.required",
+          },
+          { text: ")§r" },
+        ],
+      },
       "42",
       player.getRotation().y.toString(),
     )
-    .dropdown("Easing Type", Object.values(EasingType))
-    .slider("Ease Duration", 1, 30, 0.5, 5)
-    .toggle("Hide HUD", true)
     .dropdown(
-      "Scene",
+      {
+        translate:
+          "animstud:ui.menu.keyframe_editor.text_field.easing_type.label",
+      },
+
+      Object.values(EasingType),
+    )
+    .slider(
+      { translate: "animstud:ui.menu.keyframe_editor.slider.easing_duration" },
+      1,
+      30,
+      0.5,
+      5,
+    )
+    .toggle(
+      { translate: "animstud:ui.menu.keyframe_editor.toggle.hide_hud" },
+      true,
+    )
+    .dropdown(
+      { translate: "animstud:ui.menu.keyframe_editor.dropdown.scene.label" },
       getScenes(world).map((scene: Scene) => scene.id),
     )
-    .dropdown("Position", [
-      {
-        translate:
-          "animstud:ui.menu.keyframe_creator.dropdown.position.option.append",
-      },
-      {
-        translate:
-          "animstud:ui.menu.keyframe_creator.dropdown.position.option.prepend",
-      },
-    ]);
+    .dropdown(
+      { translate: "animstud:ui.menu.keyframe_editor.dropdown.position.label" },
+      [
+        {
+          translate:
+            "animstud:ui.menu.keyframe_creator.dropdown.position.option.append",
+        },
+        {
+          translate:
+            "animstud:ui.menu.keyframe_creator.dropdown.position.option.prepend",
+        },
+      ],
+    );
 
   const response = await form.show(player);
   if (response.formValues === undefined) {

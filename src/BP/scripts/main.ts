@@ -1,11 +1,14 @@
-// TODO: remove console calls
 // TODO: support HUD
 // TODO: always just go back on menu close
 
 import { Player, system, world } from "@minecraft/server";
-import { openGlobalSceneEditorMenu, openKeyframeCreatorMenu } from "./menu";
+import {
+  openErrorMessageMenu,
+  openGlobalSceneEditorMenu,
+  openKeyframeCreatorMenu,
+} from "./menu";
 import { getScenes } from "./scene";
-import { errorMessage, playScene } from "./util";
+import { playScene } from "./util";
 
 world.beforeEvents.itemUse.subscribe(async (event) => {
   const { typeId } = event.itemStack;
@@ -53,13 +56,20 @@ system.afterEvents.scriptEventReceive.subscribe(async (event) => {
   const player = sourceEntity;
   const scene = getScenes(world).find((s) => s.id === sceneId);
 
-  // TODO: is this OK?
   if (!(player instanceof Player)) {
     return;
   }
 
   if (scene === undefined) {
-    console.error(errorMessage(`there is no scene with the ID ${sceneId}`));
+    let retry = false;
+    while (retry) {
+      retry = (
+        await openErrorMessageMenu(player, {
+          translate: "animstud:log.error.message.no_such_scene",
+          with: [sceneId],
+        })
+      ).retry;
+    }
   }
 
   try {

@@ -613,7 +613,7 @@ export async function openKeyframeCreatorMenu(player: Player) {
   setScene(world, scene);
 }
 
-async function openErrorMessageMenu(
+export async function openErrorMessageMenu(
   player: Player,
   errorMessage: RawMessage | string,
 ): Promise<{ retry: boolean }> {

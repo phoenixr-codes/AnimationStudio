@@ -23,10 +23,6 @@ export function parseFloatElse(value: string, callback: () => number): number {
   }
 }
 
-export function errorMessage(message: string): string {
-  return `§cerror§r: ${message}`;
-}
-
 function displayVec3(vec: Vector3): string {
   return `${vec.x} ${vec.y} ${vec.z}`;
 }

@@ -1,13 +1,17 @@
 import { Keyframe } from "./keyframe";
 import { getAllEnumKeys } from "enum-for";
-import { EasingType, Player, world } from "@minecraft/server";
+import {
+  EasingType,
+  Player,
+  RawMessage,
+  world,
+} from "@minecraft/server";
 import {
   ActionFormData,
   MessageFormData,
   ModalFormData,
 } from "@minecraft/server-ui";
 import {
-  errorMessage,
   isUniqueSceneId,
   parseFloatElse,
   playScene,
@@ -22,7 +26,12 @@ export async function openGlobalSceneEditorMenu(player: Player) {
   const form = new ActionFormData()
     .title({ translate: "animstud:ui.menu.global_scene_editor.title" })
     .button(
-      { translate: "animstud:ui.menu.global_scene_editor.button.manual" },
+      {
+        rawtext: [
+          { translate: "animstud:ui.menu.global_scene_editor.button.manual" },
+          { text: " §8(coming soon)§r" },
+        ],
+      },
       "textures/ui/creative_icon",
     )
     .button(
@@ -44,6 +53,14 @@ export async function openGlobalSceneEditorMenu(player: Player) {
   switch (selection) {
     case 0:
       // TODO: open manual
+      let retry = false;
+      while (retry) {
+        retry = (
+          await openErrorMessageMenu(player, {
+            translate: "animstud:log.error.message.not_yet_implemented",
+          })
+        ).retry;
+      }
       break;
     case 1:
       await openSceneCreatorMenu(player);
@@ -90,11 +107,21 @@ async function openSceneCreatorMenu(player: Player) {
   const id: string = response.formValues![0] as string;
   if (id.length == 0) {
     // TODO: use translation key
-    player.sendMessage(errorMessage("ID must have a length of 1 or greater."));
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.id_too_short",
+    });
+    if (retry) {
+      await openSceneCreatorMenu(player);
+    }
     return;
   }
   if (!isUniqueSceneId(id)) {
-    // TODO
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.scene_id_already_used",
+    });
+    if (retry) {
+      await openSceneCreatorMenu(player);
+    }
     return;
   }
   setScene(world, { id, keyframes: [] });
@@ -132,7 +159,14 @@ async function openSceneEditorMenu(player: Player, scene: Scene) {
       await playScene(player, scene);
       break;
     case 1:
-      // TODO: configure scene
+      let retry = false;
+      while (retry) {
+        retry = (
+          await openErrorMessageMenu(player, {
+            translate: "animstud:log.error.message.not_yet_implemented",
+          })
+        ).retry;
+      }
       break;
     case 2:
       await openKeyframesEditorMenu(player, scene);
@@ -581,13 +615,13 @@ export async function openKeyframeCreatorMenu(player: Player) {
 
 async function openErrorMessageMenu(
   player: Player,
-  errorMessage: string,
+  errorMessage: RawMessage | string,
 ): Promise<{ retry: boolean }> {
   const form = new MessageFormData()
-    .title("Error")
+    .title({ translate: "animstud:ui.menu.error_message.title" })
     .body(errorMessage)
-    .button1("Retry")
-    .button1("Abort");
+    .button1({ translate: "animstud:ui.menu.button.retry" })
+    .button1({ translate: "animstud:ui.menu.button.abort" });
 
   return form
     .show(player)

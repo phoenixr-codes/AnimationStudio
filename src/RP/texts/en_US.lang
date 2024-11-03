@@ -40,7 +40,13 @@ animstud:ui.menu.keyframe_creator.title=Create Keyframe
 animstud:ui.menu.keyframe_creator.dropdown.position.option.append=Append
 animstud:ui.menu.keyframe_creator.dropdown.position.option.prepend=Prepend
 
+animstud:ui.menu.error_message.title=Error
+animstud:ui.menu.button.retry=Retry
+animstud:ui.menu.button.abort=Abort
+
 animstud:ui.label.required=required
 
 animstud:log.error.message.id_too_short=ID must have a length of 1 or greater.
+animstud:log.error.message.scene_id_already_used=ID is already used by another scene.
+animstud:log.error.message.not_yet_implemented=This feature is not yet implemented.
 

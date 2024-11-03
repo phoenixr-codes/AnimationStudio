@@ -1,5 +1,3 @@
-// TODO: use localization
-// TODO: fix icons
 // TODO: remove console calls
 // TODO: support HUD
 // TODO: always just go back on menu close

@@ -1,5 +1,6 @@
 // TODO: support HUD
 // TODO: always just go back on menu close
+// TODO: texture for scene creator
 
 import { Player, system, world } from "@minecraft/server";
 import {
@@ -70,6 +71,7 @@ system.afterEvents.scriptEventReceive.subscribe(async (event) => {
         })
       ).retry;
     }
+    return;
   }
 
   try {

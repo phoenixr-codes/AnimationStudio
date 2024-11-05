@@ -1,11 +1,6 @@
 import { Keyframe } from "./keyframe";
 import { getAllEnumKeys } from "enum-for";
-import {
-  EasingType,
-  Player,
-  RawMessage,
-  world,
-} from "@minecraft/server";
+import { EasingType, Player, RawMessage, world } from "@minecraft/server";
 import {
   ActionFormData,
   MessageFormData,
@@ -106,7 +101,6 @@ async function openSceneCreatorMenu(player: Player) {
   }
   const id: string = response.formValues![0] as string;
   if (id.length == 0) {
-    // TODO: use translation key
     const { retry } = await openErrorMessageMenu(player, {
       translate: "animstud:log.error.message.id_too_short",
     });
@@ -251,7 +245,7 @@ async function openKeyframeEditorMenu(
         ],
       },
       {
-        translate: "animstud:ui.menu_keyframe_editor.text_field.id.placeholder",
+        translate: "animstud:ui.menu.keyframe_editor.text_field.id.placeholder",
       },
       keyframe.id,
     )
@@ -422,11 +416,10 @@ async function openKeyframeEditorMenu(
     }),
   };
   keyframe.visibleHud = !(response.formValues[8] as boolean);
-  setScene(world, scene); // TODO: is this right?
+  setScene(world, scene);
 }
 
 export async function openKeyframeCreatorMenu(player: Player) {
-  // TODO: see `openKeyframeEditorMenu`
   const form = new ModalFormData()
     .title({ translate: "animstud:ui.menu.keyframe_creator.title" })
     .textField(
@@ -623,14 +616,7 @@ export async function openErrorMessageMenu(
     .button1({ translate: "animstud:ui.menu.button.retry" })
     .button1({ translate: "animstud:ui.menu.button.abort" });
 
-  return form
-    .show(player)
-    .then((response) => {
-      const canceled = response.canceled ?? response.selection === 1;
-      return { retry: !canceled };
-    })
-    .catch((e) => {
-      console.error(e);
-      return { retry: false };
-    });
+  const response = await form.show(player);
+  const canceled = response.canceled ?? response.selection === 1;
+  return { retry: !canceled };
 }

@@ -1,4 +1,4 @@
-item.animstud:keyframe_edit=Keyframe bearbeiten
-item.animstud:scene_creator=Szenen-Ersteller
+item.animstud:keyframe_creator=Keyframe bearbeiten
+item.animstud:scene_editor=Szenen-Ersteller
 
 ## TODO: translate rest of keys

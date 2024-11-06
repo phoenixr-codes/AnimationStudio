@@ -13,3 +13,4 @@ minecraft:item:
     minecraft:use_modifiers:
       use_duration: 0.1
     minecraft:hand_equipped: true
+    minecraft:max_stack_size: 1

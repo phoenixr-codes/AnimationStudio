@@ -48,7 +48,7 @@ export async function openGlobalSceneEditorMenu(player: Player) {
   switch (selection) {
     case 0:
       // TODO: open manual
-      let retry = false;
+      let retry = true;
       while (retry) {
         retry = (
           await openErrorMessageMenu(player, {
@@ -153,7 +153,8 @@ async function openSceneEditorMenu(player: Player, scene: Scene) {
       await playScene(player, scene);
       break;
     case 1:
-      let retry = false;
+      // TODO: scene configuration menu (change ID e.g.)
+      let retry = true;
       while (retry) {
         retry = (
           await openErrorMessageMenu(player, {

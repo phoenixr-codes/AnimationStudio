@@ -164,7 +164,19 @@ async function openSceneEditorMenu(player: Player, scene: Scene) {
       }
       break;
     case 2:
-      await openKeyframesEditorMenu(player, scene);
+      const hasKeyframes = scene.keyframes.length > 0;
+      if (hasKeyframes) {
+        await openKeyframesEditorMenu(player, scene);
+      } else {
+        let retry = true;
+        while (retry) {
+          retry = (
+            await openErrorMessageMenu(player, {
+              translate: "animstud:log.error.message.scene_without_keyframes",
+            })
+          ).retry;
+        }
+      }
       break;
     case 3:
       await printExport(player, scene);
@@ -190,31 +202,23 @@ async function openKeyframesEditorMenu(player: Player, scene: Scene) {
       ],
     })
     .body({ translate: "animstud:ui.menu.keyframes_editor.body" });
-  const hasKeyframes = scene.keyframes.length > 0;
-  if (hasKeyframes) {
-    for (const keyframe of scene.keyframes) {
-      form.button(
-        {
-          translate: "animstud:ui.menu.keyframes_editor.button.edit",
-          with: [keyframe.id],
-        },
-        "textures/ui/editIcon",
-      );
-    }
-  } else {
-    form.button("TODO: we need at least one button");
+
+  for (const keyframe of scene.keyframes) {
+    form.button(
+      {
+        translate: "animstud:ui.menu.keyframes_editor.button.edit",
+        with: [keyframe.id],
+      },
+      "textures/ui/editIcon",
+    );
   }
 
   const response = await form.show(player);
   if (response.selection === undefined) {
     return;
   }
-  if (hasKeyframes) {
-    const selectedKeyframe = scene.keyframes[response.selection];
-    await openKeyframeEditorMenu(player, scene, selectedKeyframe);
-  } else {
-    // TODO
-  }
+  const selectedKeyframe = scene.keyframes[response.selection];
+  await openKeyframeEditorMenu(player, scene, selectedKeyframe);
 }
 
 async function openKeyframeEditorMenu(
@@ -618,6 +622,6 @@ export async function openErrorMessageMenu(
     .button1({ translate: "animstud:ui.menu.button.abort" });
 
   const response = await form.show(player);
-  const canceled = response.canceled ?? response.selection === 1;
-  return { retry: !canceled };
+  const retry = response.selection === 0;
+  return { retry };
 }

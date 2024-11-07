@@ -25,6 +25,10 @@
   "capabilities": ["script_eval"],
   "dependencies": [
     {
+      "uuid": "d4b3dae4-7517-458f-bea5-5c5680d34510",
+      "version": [0, 1, 0]
+    },
+    {
       "module_name": "@minecraft/server",
       "version": "1.14.0"
     },

@@ -14,15 +14,6 @@ export function isUniqueSceneId(id: string): boolean {
   return getScenes(world).find((scene: Scene) => scene.id === id) === undefined;
 }
 
-export function parseFloatElse(value: string, callback: () => number): number {
-  const result = parseFloat(value);
-  if (isNaN(result) || result === Infinity || result === -Infinity) {
-    return callback();
-  } else {
-    return result;
-  }
-}
-
 function displayVec3(vec: Vector3): string {
   return `${vec.x} ${vec.y} ${vec.z}`;
 }

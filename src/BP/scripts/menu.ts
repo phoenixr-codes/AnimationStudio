@@ -385,46 +385,119 @@ async function openKeyframeEditorMenu(
   if (response.formValues === undefined) {
     return;
   }
-  // TODO: ensure id.length > 0
+  
+  const posX = parseFloat(response.formValues[1] as string);
+  if (isNaN(posX) || posX === Infinity || posX === -Infinity) {
+    const { retry } = (
+      await openErrorMessageMenu(player, {
+        translate: "animstud:log.error.message.invalid_coordinate",
+      })
+    );
+    if (retry) {
+      await openKeyframeEditorMenu(player, scene, keyframe);
+    }
+    return;
+  }
+
+  const posY = parseFloat(response.formValues[2] as string);
+  if (isNaN(posY) || posY === Infinity || posY === -Infinity) {
+    const { retry } = (
+      await openErrorMessageMenu(player, {
+        translate: "animstud:log.error.message.invalid_coordinate",
+      })
+    );
+    if (retry) {
+      await openKeyframeEditorMenu(player, scene, keyframe);
+    }
+    return;
+  }
+
+  const posZ = parseFloat(response.formValues[3] as string);
+  if (isNaN(posZ) || posZ === Infinity || posZ === -Infinity) {
+    const { retry } = (
+      await openErrorMessageMenu(player, {
+        translate: "animstud:log.error.message.invalid_coordinate",
+      })
+    );
+    if (retry) {
+      await openKeyframeEditorMenu(player, scene, keyframe);
+    }
+    return;
+  }
+
+  const rotX = parseFloat(response.formValues[4] as string);
+  if (isNaN(rotX) || rotX === Infinity || rotX === -Infinity) {
+    const {retry} = (
+      await openErrorMessageMenu(player, {
+        translate: "animstud:log.error.message.invalid_coordinate",
+      })
+    );
+    if (retry) {
+      await openKeyframeEditorMenu(player, scene, keyframe);
+    }
+    return;
+  }
+
+  const rotY = parseFloat(response.formValues[5] as string);
+  if (isNaN(rotY) || rotY === Infinity || rotY === -Infinity) {
+    const {retry} = (
+      await openErrorMessageMenu(player, {
+        translate: "animstud:log.error.message.invalid_coordinate",
+      })
+    );
+    if (retry) {
+      await openKeyframeEditorMenu(player, scene, keyframe);
+    }
+    return;
+  }
+
+  const easeTime = parseFloat(response.formValues[6] as string);
+  if (isNaN(easeTime) || easeTime === Infinity || easeTime < 0) {
+    const {retry} = (
+      await openErrorMessageMenu(player, {
+        translate: "animstud:log.error.message.invalid_ease_time",
+      })
+    );
+    if (retry) {
+      await openKeyframeEditorMenu(player, scene, keyframe);
+    }
+    return;
+  }
+
+  const id = response.formValues[0] as string;
+  if (id.length === 0) {
+    const { retry } = (
+      await openErrorMessageMenu(player, {
+        translate: "animstud:log.error.message.id_too_short"
+      })
+    );
+    if (retry) {
+      await openKeyframeEditorMenu(player, scene, keyframe);
+    }
+    return;
+  }
+
   keyframe.id = response.formValues[0] as string;
-  // TODO: error message when not float
   keyframe.pos = {
-    x: parseFloatElse(response.formValues[1] as string, () => {
-      console.error("TODO");
-      return 0;
-    }),
-    y: parseFloatElse(response.formValues[2] as string, () => {
-      console.error("TODO");
-      return 0;
-    }),
-    z: parseFloatElse(response.formValues[3] as string, () => {
-      console.error("TODO");
-      return 0;
-    }),
+    x: posX,
+    y: posY,
+    z: posZ,
   };
   keyframe.rot = {
-    x: parseFloatElse(response.formValues[4] as string, () => {
-      console.error("TODO");
-      return 0;
-    }),
-    y: parseFloatElse(response.formValues[5] as string, () => {
-      console.error("TODO");
-      return 0;
-    }),
+    x: rotX,
+    y: rotY,
   };
   keyframe.ease = {
     easeType:
       EasingType[getAllEnumKeys(EasingType)[response.formValues[6] as number]],
-    easeTime: parseFloatElse(response.formValues[7] as string, () => {
-      console.error("TODO");
-      return 0.5;
-    }),
+    easeTime: easeTime,
   };
   keyframe.visibleHud = !(response.formValues[8] as boolean);
   setScene(world, scene);
 }
 
 export async function openKeyframeCreatorMenu(player: Player) {
+  // TODO: apply same structure as above
   const form = new ModalFormData()
     .title({ translate: "animstud:ui.menu.keyframe_creator.title" })
     .textField(

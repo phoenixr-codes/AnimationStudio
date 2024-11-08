@@ -51,4 +51,6 @@ animstud:log.error.message.scene_id_already_used=ID is already used by another s
 animstud:log.error.message.not_yet_implemented=This feature is not yet implemented.
 animstud:log.error.message.no_such_scene=There is no scene with the ID %s.
 animstud:log.error.message.scene_without_keyframes=The scene you have selected does not have any keyframes. Use the §bCreate Keyframe§r item to create a new keyframe.
+animstud:log.error.message.invalid_coordinate=The coordinate you entered is invalid.
+animstud:log.error.message.invalid_ease_time=The ease time you entered is invalid.
 

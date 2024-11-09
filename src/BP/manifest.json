@@ -19,7 +19,7 @@
       "type": "data",
       "uuid": "3c798f18-1aff-4b7b-860d-8c73bdc2ec2c",
       "version": [1, 0, 1],
-      "description": "TODO"
+      "description": "pack.description"
     }
   ],
   "capabilities": ["script_eval"],

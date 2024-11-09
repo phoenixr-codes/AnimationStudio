@@ -1,5 +1,5 @@
-item.animstud:keyframe_creater=Edit Keyframe
-item.animstud:scene_editor=Scene Creator
+item.animstud:keyframe_creater=Create Keyframe
+item.animstud:scene_editor=Scene Editor
 
 animstud:ui.menu.global_scene_editor.title=Scene Editor
 animstud:ui.menu.global_scene_editor.button.manual=Manual

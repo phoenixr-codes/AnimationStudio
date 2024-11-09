@@ -1,4 +1,56 @@
-item.animstud:keyframe_creator=Keyframe bearbeiten
-item.animstud:scene_editor=Szenen-Ersteller
+item.animstud:keyframe_creator=Keyframe erstellen
+item.animstud:scene_editor=Szenen-Editor
 
-## TODO: translate rest of keys
+animstud:ui.menu.global_scene_editor.title=Szenen-Editor
+animstud:ui.menu.global_scene_editor.button.manual=Anleitung
+animstud:ui.menu.global_scene_editor.button.create_scene=Szene erstellen
+animstud:ui.menu.global_scene_editor.button.edit_scene=Szene §o%s§r bearbeiten
+
+animstud:ui.menu.scene_creator.title=Szenen-Ersteller
+animstud:ui.menu.scene_creator.text_field.id.label=ID
+animstud:ui.menu.scene_creator.text_field.id.placeholder=Eindeutige ID der Szene
+animstud:ui.menu.scene_editor.title=Szene §o%s§r bearbeiten
+animstud:ui.menu.scene_editor.button.preview=Szenen-Vorschau
+animstud:ui.menu.scene_editor.button.configure=Szene konfigurieren
+animstud:ui.menu.scene_editor.button.edit=Szene bearbeiten
+animstud:ui.menu.scene_editor.button.export=Szene exportieren
+
+animstud:ui.menu.keyframes_editor.title=Keyframes
+animstud:ui.menu.keyframes_editor.body=Benutze den §bKeyframe erstellen§r-Gegenstand, um einen neuen Keyframe zu erstellen.
+animstud:ui.menu.keyframes_editor.button.edit=Keyframe §o%s§r bearbeiten
+
+animstud:ui.menu.keyframe_editor.title=Keyframe §o%s§r bearbeiten
+animstud:ui.menu.keyframe_editor.text_field.id.label=ID
+animstud:ui.menu.keyframe_editor.text_field.id.placeholder=Eindeutige ID des Keyframes
+animstud:ui.menu.keyframe_editor.text_field.camera_position_x.label=Kameraposition X
+animstud:ui.menu.keyframe_editor.text_field.camera_position_y.label=Kameraposition Y
+animstud:ui.menu.keyframe_editor.text_field.camera_position_z.label=Kameraposition Z
+animstud:ui.menu.keyframe_editor.text_field.camera_rotation_x.label=Kamerarotation X
+animstud:ui.menu.keyframe_editor.text_field.camera_rotation_y.label=Kamerarotation Y
+animstud:ui.menu.keyframe_editor.text_field.easing_type.label=Easing-Variante
+animstud:ui.menu.keyframe_editor.slider.easing_duration=Easing-Dauer
+animstud:ui.menu.keyframe_editor.toggle.hide_hud=HUD verstecken
+animstud:ui.menu.keyframe_editor.dropdown.scene.label=Szene
+animstud:ui.menu.keyframe_editor.dropdown.position.label=Position
+animstud:ui.menu.keyframe_editor.dropdown.position.option.keep=Bleiben
+animstud:ui.menu.keyframe_editor.dropdown.position.option.swap_previous=Mit vorherigem tauschen
+animstud:ui.menu.keyframe_editor.dropdown.position.option.swap_next=Mit nächstem tauschen
+
+animstud:ui.menu.keyframe_creator.title=Keyframe erstellen
+animstud:ui.menu.keyframe_creator.dropdown.position.option.append=Hinten anfügen
+animstud:ui.menu.keyframe_creator.dropdown.position.option.prepend=Vorne anfügen
+
+animstud:ui.menu.error_message.title=Fehler
+animstud:ui.menu.button.retry=Erneut versuchen
+animstud:ui.menu.button.abort=Abbrechen
+
+animstud:ui.label.required=erforderlich
+
+animstud:log.error.message.id_too_short=ID müssen eine Länge von mindestens 1 haben.
+animstud:log.error.message.scene_id_already_used=ID wird bereits für eine andere Szene genutzt.
+animstud:log.error.message.not_yet_implemented=Dieses Feature ist noch nicht implementiert.
+animstud:log.error.message.no_such_scene=Es gibt keine Szene mit der ID %s.
+animstud:log.error.message.scene_without_keyframes=Die Szene, die du ausgewählt hast, enthält keine Keyframes. Benutze den §bKeyframe erstellen§r-Gegenstand, um ein neuen Keyframe zu erstellen.
+animstud:log.error.message.invalid_coordinate=Die Koordinate, die du eingegeben hast ist ungültig.
+animstud:log.error.message.invalid_ease_time=Die Ease-Dauer, die du eingegeben hast ist ungültig.
+

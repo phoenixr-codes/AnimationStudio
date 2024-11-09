@@ -8,7 +8,6 @@ import {
 } from "@minecraft/server-ui";
 import {
   isUniqueSceneId,
-  parseFloatElse,
   playScene,
   printExport,
 } from "./util";
@@ -385,14 +384,12 @@ async function openKeyframeEditorMenu(
   if (response.formValues === undefined) {
     return;
   }
-  
+
   const posX = parseFloat(response.formValues[1] as string);
   if (isNaN(posX) || posX === Infinity || posX === -Infinity) {
-    const { retry } = (
-      await openErrorMessageMenu(player, {
-        translate: "animstud:log.error.message.invalid_coordinate",
-      })
-    );
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
     if (retry) {
       await openKeyframeEditorMenu(player, scene, keyframe);
     }
@@ -401,11 +398,9 @@ async function openKeyframeEditorMenu(
 
   const posY = parseFloat(response.formValues[2] as string);
   if (isNaN(posY) || posY === Infinity || posY === -Infinity) {
-    const { retry } = (
-      await openErrorMessageMenu(player, {
-        translate: "animstud:log.error.message.invalid_coordinate",
-      })
-    );
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
     if (retry) {
       await openKeyframeEditorMenu(player, scene, keyframe);
     }
@@ -414,11 +409,9 @@ async function openKeyframeEditorMenu(
 
   const posZ = parseFloat(response.formValues[3] as string);
   if (isNaN(posZ) || posZ === Infinity || posZ === -Infinity) {
-    const { retry } = (
-      await openErrorMessageMenu(player, {
-        translate: "animstud:log.error.message.invalid_coordinate",
-      })
-    );
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
     if (retry) {
       await openKeyframeEditorMenu(player, scene, keyframe);
     }
@@ -427,11 +420,9 @@ async function openKeyframeEditorMenu(
 
   const rotX = parseFloat(response.formValues[4] as string);
   if (isNaN(rotX) || rotX === Infinity || rotX === -Infinity) {
-    const {retry} = (
-      await openErrorMessageMenu(player, {
-        translate: "animstud:log.error.message.invalid_coordinate",
-      })
-    );
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
     if (retry) {
       await openKeyframeEditorMenu(player, scene, keyframe);
     }
@@ -440,11 +431,9 @@ async function openKeyframeEditorMenu(
 
   const rotY = parseFloat(response.formValues[5] as string);
   if (isNaN(rotY) || rotY === Infinity || rotY === -Infinity) {
-    const {retry} = (
-      await openErrorMessageMenu(player, {
-        translate: "animstud:log.error.message.invalid_coordinate",
-      })
-    );
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
     if (retry) {
       await openKeyframeEditorMenu(player, scene, keyframe);
     }
@@ -453,11 +442,9 @@ async function openKeyframeEditorMenu(
 
   const easeTime = parseFloat(response.formValues[6] as string);
   if (isNaN(easeTime) || easeTime === Infinity || easeTime < 0) {
-    const {retry} = (
-      await openErrorMessageMenu(player, {
-        translate: "animstud:log.error.message.invalid_ease_time",
-      })
-    );
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_ease_time",
+    });
     if (retry) {
       await openKeyframeEditorMenu(player, scene, keyframe);
     }
@@ -466,11 +453,9 @@ async function openKeyframeEditorMenu(
 
   const id = response.formValues[0] as string;
   if (id.length === 0) {
-    const { retry } = (
-      await openErrorMessageMenu(player, {
-        translate: "animstud:log.error.message.id_too_short"
-      })
-    );
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.id_too_short",
+    });
     if (retry) {
       await openKeyframeEditorMenu(player, scene, keyframe);
     }
@@ -497,7 +482,6 @@ async function openKeyframeEditorMenu(
 }
 
 export async function openKeyframeCreatorMenu(player: Player) {
-  // TODO: apply same structure as above
   const form = new ModalFormData()
     .title({ translate: "animstud:ui.menu.keyframe_creator.title" })
     .textField(
@@ -647,26 +631,105 @@ export async function openKeyframeCreatorMenu(player: Player) {
   if (response.formValues === undefined) {
     return;
   }
+
+  const posX = parseFloat(response.formValues[1] as string);
+  if (isNaN(posX) || posX === Infinity || posX === -Infinity) {
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
+    if (retry) {
+      await openKeyframeCreatorMenu(player);
+    }
+    return;
+  }
+
+  const posY = parseFloat(response.formValues[2] as string);
+  if (isNaN(posY) || posY === Infinity || posY === -Infinity) {
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
+    if (retry) {
+      await openKeyframeCreatorMenu(player);
+    }
+    return;
+  }
+
+  const posZ = parseFloat(response.formValues[3] as string);
+  if (isNaN(posZ) || posZ === Infinity || posZ === -Infinity) {
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
+    if (retry) {
+      await openKeyframeCreatorMenu(player);
+    }
+    return;
+  }
+
+  const rotX = parseFloat(response.formValues[4] as string);
+  if (isNaN(rotX) || rotX === Infinity || rotX === -Infinity) {
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
+    if (retry) {
+      await openKeyframeCreatorMenu(player);
+    }
+    return;
+  }
+
+  const rotY = parseFloat(response.formValues[5] as string);
+  if (isNaN(rotY) || rotY === Infinity || rotY === -Infinity) {
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_coordinate",
+    });
+    if (retry) {
+      await openKeyframeCreatorMenu(player);
+    }
+    return;
+  }
+
+  const easeTime = parseFloat(response.formValues[6] as string);
+  if (isNaN(easeTime) || easeTime === Infinity || easeTime < 0) {
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.invalid_ease_time",
+    });
+    if (retry) {
+      await openKeyframeCreatorMenu(player);
+    }
+    return;
+  }
+
+  const id = response.formValues[0] as string;
+  if (id.length === 0) {
+    const { retry } = await openErrorMessageMenu(player, {
+      translate: "animstud:log.error.message.id_too_short",
+    });
+    if (retry) {
+      await openKeyframeCreatorMenu(player);
+    }
+    return;
+  }
+
   const keyframe: Keyframe = {
     id: response.formValues[0] as string,
     pos: {
-      x: parseFloatElse(response.formValues[1] as string, () => 0),
-      y: parseFloatElse(response.formValues[2] as string, () => 0),
-      z: parseFloatElse(response.formValues[3] as string, () => 0),
+      x: posX,
+      y: posY,
+      z: posZ,
     },
     rot: {
-      x: parseFloatElse(response.formValues[4] as string, () => 0),
-      y: parseFloatElse(response.formValues[5] as string, () => 0),
+      x: rotX,
+      y: rotY,
     },
     ease: {
       easeType:
         EasingType[
           getAllEnumKeys(EasingType)[response.formValues[6] as number]
         ],
-      easeTime: parseFloatElse(response.formValues[7] as string, () => 5),
+      easeTime: easeTime,
     },
     visibleHud: !(response.formValues[8] as boolean),
   };
+
   const scene = getScenes(world)[response.formValues[9] as number];
   const position = response.formValues[10] as number;
   switch (position) {

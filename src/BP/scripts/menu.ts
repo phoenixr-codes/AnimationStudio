@@ -755,7 +755,7 @@ export async function openErrorMessageMenu(
     .title({ translate: "animstud:ui.menu.error_message.title" })
     .body(errorMessage)
     .button1({ translate: "animstud:ui.menu.button.retry" })
-    .button1({ translate: "animstud:ui.menu.button.abort" });
+    .button2({ translate: "animstud:ui.menu.button.abort" });
 
   const response = await form.show(player);
   const retry = response.selection === 0;

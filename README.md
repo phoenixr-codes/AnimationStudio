@@ -10,4 +10,5 @@ to the chat. When you put these commands in command blocks, you can even remove 
 ## Upcoming Features
 
 - In-game and out-of-game manual
+- Information such as current keyframe and time in hotbar while previewing
 

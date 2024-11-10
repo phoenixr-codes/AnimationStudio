@@ -1,4 +1,5 @@
 // TODO: always just go back on menu close
+// TODO: scriptevent for pausing/stopping preview
 
 import { Player, system, world } from "@minecraft/server";
 import {

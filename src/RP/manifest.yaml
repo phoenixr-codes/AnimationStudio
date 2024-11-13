@@ -1,0 +1,23 @@
+format_version: 2
+header:
+  description: pack.description
+  min_engine_version: [1, 21, 30]
+  name: pack.name
+  uuid: cf82a6ec-5168-4d45-aa65-0a7fd3164cae
+  version: [0, 1, 0]
+modules:
+  - description: pack.description
+    type: resources
+    uuid: 5e56763a-4de3-4dd8-ad19-42a23d20cff9
+    version: [0, 1, 0]
+dependencies: []
+metadata:
+  authors:
+    - Jonas da Silva
+    - pxr
+  license: MIT
+  generated_with:
+    allay:
+      - 0.1.0
+  url: 'https://github.com/phoenixr-codes/AnimationStudio'
+

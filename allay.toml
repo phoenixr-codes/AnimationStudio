@@ -18,6 +18,9 @@ primary-language = "en-us"
 [BP]
 custom-manifest = true
 
+[RP]
+custom-manifest = true
+
 # [[plugin]]
 # name = "transpile typescript"
 # run = "npm"
